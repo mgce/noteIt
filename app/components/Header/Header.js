@@ -20,7 +20,7 @@ class Header extends React.PureComponent {
 
     if (inDrawer)
       LeftIcon = (
-        <TouchableOpacity onPress={this.props.closeDrawer}>
+        <TouchableOpacity onPress={this.props.goBack}>
           <Close />
         </TouchableOpacity>
       );
@@ -51,7 +51,7 @@ class Header extends React.PureComponent {
           <TouchableOpacity>
             <Label />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.leftNeighbour}>
+          <TouchableOpacity style={styles.leftNeighbour} onPress={this.props.submit}>
             <Checkmark />
           </TouchableOpacity>
         </View>

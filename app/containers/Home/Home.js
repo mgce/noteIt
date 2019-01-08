@@ -90,13 +90,13 @@ export default class App extends Component {
   render() {
     return (
       <Drawer ref={(ref) => { this.drawer = ref; }}
-      content={<DrawerContent closeDrawer={this.closeDrawer}/>}>
+      content={<DrawerContent goBack={this.closeDrawer}/>}>
         <View style={{ flex: 1, backgroundColor: "#F4F4F4" }}>
           <Header 
           home
           title="Your Notes" 
           openDrawer={this.openDrawer}/>
-          <NoteList dataSource={noteList} />
+          <NoteList dataSource={this.props.notes.notesList} />
           <ActionButton
           buttonColor="#716AFF"
           onPress={this.openEditor}

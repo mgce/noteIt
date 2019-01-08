@@ -95,7 +95,7 @@ export default class App extends Component {
         ref={ref => {
           this.drawer = ref;
         }}
-        content={<DrawerContent closeDrawer={this.closeDrawer} />}
+        content={<DrawerContent goBack={this.closeDrawer} />}
       >
         <View style={{ flex: 1, backgroundColor: "#F4F4F4" }}>
           <Header

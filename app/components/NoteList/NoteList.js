@@ -1,10 +1,10 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, Component } from "react";
 import { StyleSheet, FlatList, View, Text } from "react-native";
 import NoteCard from "components/NoteCard";
 import { SwipeListView } from "react-native-swipe-list-view";
 import UnderNoteCard from "../UnderNoteCard"
 
-export default class NoteList extends PureComponent {
+export default class NoteList extends Component {
   constructor(props) {
     super(props);
   }
@@ -12,8 +12,8 @@ export default class NoteList extends PureComponent {
     <NoteCard
       key={item.key}
       title={item.title}
-      description={item.description}
-      creationDate={item.creationDate}
+      description={item.body}
+      dateCreate={item.dateCreate}
     />
   );
   render() {

@@ -1,13 +1,35 @@
 import React from "react";
-import { StyleSheet, TouchableHighlight, TouchableOpacity, Text, View } from "react-native";
+import {
+  StyleSheet,
+  TouchableHighlight,
+  TouchableOpacity,
+  Text,
+  View
+} from "react-native";
 import { colors, fonts } from "../../constants/styles";
 
 export default class NoteCard extends React.PureComponent {
+  displayDate = d =>{
+    const minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes();
+    const hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours();
+    const ampm = d.getHours() >= 12 ? 'pm' : 'am';
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    return days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes+' '+ampm;
+  }
+  displayDescription = description => {
+    if(description.length > 150)
+      description = description.substr(0, 150) + "..."
+    return description.replace(/\n/g, " ");;
+  }
   render() {
+    const dateCreate = new Date(this.props.dateCreate);
+    const displayDateCreate = this.displayDate(dateCreate);
     return (
-      <TouchableHighlight 
-      underlayColor = {colors.primary}
-      onPress={()=> console.log("touched!")}>
+      <TouchableHighlight
+        underlayColor={colors.primary}
+        onPress={() => console.log("touched!")}
+      >
         <View>
           <View style={styles.container}>
             <View style={styles.titleContainer}>
@@ -16,8 +38,8 @@ export default class NoteCard extends React.PureComponent {
             </View>
 
             <View style={styles.descriptionContainer}>
-              <Text style={styles.description}>{this.props.description}</Text>
-              <Text style={styles.creationDate}>{this.props.creationDate}</Text>
+              <Text style={styles.description}>{this.displayDescription(this.props.description)}</Text>
+              <Text style={styles.dateCreate}>{displayDateCreate}</Text>
             </View>
           </View>
           <View style={styles.separator} />
@@ -58,7 +80,7 @@ const styles = StyleSheet.create({
     fontSize: fonts.md,
     paddingBottom: 10
   },
-  creationDate: {
+  dateCreate: {
     color: colors.textPrimary,
     fontFamily: "Inter UI",
     fontSize: fonts.sm,

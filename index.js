@@ -20,7 +20,7 @@ function WrappedComponent(Component){
 }
 
 Navigation.registerComponent(`navigation.noteIt.HomeScreen`, () => WrappedComponent(Home));
-Navigation.registerComponent(`navigation.noteIt.NoteEditorScreen`, () => NoteEditor);
+Navigation.registerComponent(`navigation.noteIt.NoteEditorScreen`, () => WrappedComponent(NoteEditor));
 
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setRoot({
