@@ -9,6 +9,7 @@ import NoteEditor from "../NoteEditor/NoteEditor";
 import Modal from "react-native-modal";
 import { colors, dimensions } from "constants/styles";
 import {goToEditor} from "navigation"
+import {observer, inject} from 'mobx-react/native'
 
 const noteList = [
   {
@@ -65,6 +66,8 @@ const noteList = [
   }
 ];
 
+@inject("notes")
+@observer
 export default class App extends Component {
   constructor(props){
     super(props);
@@ -78,6 +81,7 @@ export default class App extends Component {
     this.drawer._root.close()
   };
   openDrawer = () => {
+    console.log(this);
     this.drawer._root.open()
   };
   openEditor = () => {
