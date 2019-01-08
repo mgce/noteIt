@@ -142,6 +142,9 @@ android {
 }
 
 configurations.all {
+    resolutionStrategy {
+        force 'org.webkit:android-jsc:r236355'
+    }
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->
         def requested = details.requested
         if (requested.group == 'com.android.support' && requested.name != 'multidex') {

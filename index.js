@@ -4,9 +4,11 @@ import { Navigation } from "react-native-navigation";
 import Home from "containers/Home"
 import NoteEditor from "containers/NoteEditor"
 import { name as appName } from "./app.json";
+import { Provider } from 'mobx-react/native';
+import store from "store"
 
-Navigation.registerComponent(`navigation.noteIt.HomeScreen`, () => Home);
-Navigation.registerComponent(`navigation.noteIt.NoteEditorScreen`, () => NoteEditor);
+Navigation.registerComponentWithRedux(`navigation.noteIt.HomeScreen`, () => Home, Provider, store);
+Navigation.registerComponentWithRedux(`navigation.noteIt.NoteEditorScreen`, () => NoteEditor, Provider, store);
 
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setRoot({

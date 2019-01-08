@@ -1,17 +1,18 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableHighlight } from "react-native";
 import { Pencil, Trash } from "../../assets/icons/Icons";
+import {colors} from "constants/styles"
 
 export default class UnderNoteCard extends React.PureComponent {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.leftContainer}>
+        <TouchableHighlight style={styles.leftContainer} onPress={()=>console.log("leftTapped")}>
           <Trash />
-        </View>
-        <View style={styles.rightContainer}>
+        </TouchableHighlight>
+        <TouchableHighlight style={styles.rightContainer} onPress={()=>console.log("rightTapped")}>
           <Pencil />
-        </View>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -20,17 +21,18 @@ export default class UnderNoteCard extends React.PureComponent {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row"
+    flexDirection: "row",
+    backgroundColor: colors.primary
   },
   leftContainer: {
     alignSelf: "center",
-    paddingLeft: 30
+    paddingLeft: 20
   },
   rightContainer: {
     alignSelf: "center",
     flex: 1,
     flexDirection: "row-reverse",
     justifyContent: "flex-start",
-    paddingLeft: 30
+    paddingLeft: 20
   }
 });
