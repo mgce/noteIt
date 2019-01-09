@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Form, Item, Input, Textarea, Label } from "native-base";
+import { Form, Item, Input, Textarea } from "native-base";
 import { colors, fonts } from "constants/styles";
 import Header from "components/Header";
 import { Navigation } from "react-native-navigation";

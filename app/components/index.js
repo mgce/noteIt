@@ -5,6 +5,7 @@ import NoteList from "./NoteList";
 import DrawerContent from "./DrawerContent";
 import UnderNoteCard from "./UnderNoteCard";
 import DrawerItem from "./DrawerItem";
+import EmptyList from "./EmptyList";
 
 export default {
     Text,
@@ -13,5 +14,6 @@ export default {
     DrawerContent,
     UnderNoteCard,
     DrawerItem,
+    EmptyList,
     Header
 }

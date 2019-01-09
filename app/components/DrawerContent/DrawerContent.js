@@ -1,7 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import Text from "../Text";
-import { colors, fonts } from "../../constants/styles";
+import { colors } from "../../constants/styles";
 import Header from "../Header";
 import DrawerItem from "../DrawerItem"
 

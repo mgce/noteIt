@@ -8,11 +8,18 @@ class NotesStore {
 
     @action
     addNote(note){
+        const lastElement = this.notesList.pop();
+        if(lastElement === undefined)
+            note.key = 1
+        else
+            note.key = lastElement.key++
         this.notesList.push(note)
-        index++
-
-        var test = toJS(this.notesList)
     };
+
+    @action
+    deleteNote(note){
+        this.notesList.splice(this.notesList(note),1)
+    }
 }
 
 const notesStore = new NotesStore();

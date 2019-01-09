@@ -10,9 +10,7 @@ export default class UnderNoteCard extends React.PureComponent {
         <TouchableHighlight style={styles.leftContainer} onPress={()=>console.log("leftTapped")}>
           <Trash />
         </TouchableHighlight>
-        <TouchableHighlight style={styles.rightContainer} onPress={()=>console.log("rightTapped")}>
-          <Pencil />
-        </TouchableHighlight>
+       
       </View>
     );
   }
