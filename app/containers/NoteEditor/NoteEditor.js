@@ -12,10 +12,23 @@ export default class NoteEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: null,
       title: "",
-      body: ""
+      body: "",
+      dateCreated: null
     };
     this.saveNote = this.saveNote.bind(this);
+  }
+  componentDidMount(){
+    if(this.props === undefined)
+      return;
+
+     this.setState({
+       id: this.props.id,
+       title: this.props.title,
+       body: this.props.body,
+       dateCreated: this.props.dateCreated
+     }) 
   }
   goBack() {
     Navigation.dismissAllModals();
@@ -28,12 +41,18 @@ export default class NoteEditor extends React.Component {
   };
   saveNote = () => {
     const note = {
+      id: this.state.id,
       title: this.state.title,
       body: this.state.body,
-      dateCreate: Date.now(),
+      dateCreated: this.state.dateCreated  ? this.state.dateCreated : Date.now(),
       dateModified: Date.now()
     };
-    this.props.notes.addNote(note);
+
+    if(note.id !== null)
+      this.props.notes.editNote(note)
+    else
+      this.props.notes.addNote(note);
+
     this.goBack();
   };
   render() {

@@ -21,6 +21,7 @@ export default class App extends Component {
     this.openDrawer = this.openDrawer.bind(this);
     this.closeDrawer = this.closeDrawer.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
+    this.editNote = this.editNote.bind(this);
   }
   closeDrawer = () => {
     this.drawer._root.close();
@@ -29,8 +30,8 @@ export default class App extends Component {
     console.log(this);
     this.drawer._root.open();
   };
-  openEditor = () => {
-    goToEditor(this.props.componentId);
+  openEditor = (params) => {
+    goToEditor(this.props.componentId, params);
   };
   listIsEmpty = () => {
     return this.props.notes.notesList.length === 0;
@@ -50,11 +51,19 @@ export default class App extends Component {
   deleteNote = (note) => {
     this.props.notes.deleteNote(note);
   }
+  editNote = (key) => {
+    var note = this.props.notes.findByKey(key);
+    this.openEditor(note);
+  }
   renderContent = () => {
     if (this.listIsEmpty()) return <EmptyList openEditor={this.openEditor} />;
     return (
       <React.Fragment>
-        <NoteList dataSource={this.props.notes.notesList} deleteAction={this.deleteNote}/>
+        <NoteList 
+        dataSource={this.props.notes.notesList} 
+        onPress={this.editNote}
+        deleteAction={this.deleteNote}
+        openEditor={this.openEditor}/>
         <ActionButton buttonColor="#716AFF" onPress={this.openEditor} />
       </React.Fragment>
     );

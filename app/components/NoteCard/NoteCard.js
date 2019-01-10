@@ -21,13 +21,16 @@ export default class NoteCard extends React.PureComponent {
       description = description.substr(0, 150) + "..."
     return description.replace(/\n/g, " ");;
   }
+  onPress = () => (
+    this.props.onPress(this.props.id)
+  )
   render() {
     const dateCreate = new Date(this.props.dateCreate);
     const displayDateCreate = this.displayDate(dateCreate);
     return (
       <TouchableHighlight
         underlayColor={colors.primary}
-        onPress={() => console.log("touched!")}
+        onPress={this.onPress}
       >
         <View>
           <View style={styles.container}>

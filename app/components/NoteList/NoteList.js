@@ -28,7 +28,7 @@ export default class NoteList extends Component {
         duration: 200,
         ease
       }).start(() => {
-        this.props.deleteAction(key);
+        this.props.deleteAction(parseInt(key));
         this.animationIsRunning = false;
       });
     }
@@ -44,10 +44,11 @@ export default class NoteList extends Component {
         }}
       >
         <NoteCard
-          key={item.key}
+          id={item.id}
           title={item.title}
           description={item.body}
           dateCreate={item.dateCreate}
+          onPress={this.props.onPress}
         />
       </Animated.View>
     );
@@ -63,7 +64,7 @@ export default class NoteList extends Component {
         leftOpenValue={dimensions.fullWidth}
         disableLeftSwipe
         onSwipeValueChange={this.onSwipeValueChange}
-        keyExtractor={item => item.key.toString()}
+        keyExtractor={item => item.id.toString()}
       />
     );
   }
