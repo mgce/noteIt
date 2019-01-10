@@ -11,6 +11,15 @@ import {
 } from "../../assets/icons/Icons";
 
 class Header extends React.PureComponent {
+  renderEditor(){
+
+  }
+  renderInDrawer(){
+
+  }
+  renderHome(){
+    
+  }
   render() {
     const { inDrawer, home, editor } = this.props;
 
