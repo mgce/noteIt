@@ -1,5 +1,7 @@
 import notesStore from "./notesStore";
+import labelsStore from "./labelsStore";
 
 export default {
-    notes: notesStore
+    notes: notesStore,
+    labels: labelsStore
 }

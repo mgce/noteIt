@@ -1,5 +1,11 @@
 import Home from "./Home"
+import NoteEditor from "./NoteEditor"
+import mainWrapper from "./MainWrapper"
+import Labels from "./Labels"
 
 export default {
-    Home
+    Home,
+    NoteEditor,
+    mainWrapper,
+    Labels
 }

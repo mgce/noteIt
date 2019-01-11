@@ -1,9 +1,6 @@
 import React, { PureComponent, Component } from "react";
 import {
   StyleSheet,
-  FlatList,
-  View,
-  Text,
   Animated,
   Easing
 } from "react-native";

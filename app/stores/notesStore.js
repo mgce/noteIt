@@ -1,10 +1,8 @@
-import {observable, action, toJS} from "mobx";
-import { Item } from "native-base";
-
-let index = 0;
+import {observable, action} from "mobx";
 
 class NotesStore {
     @observable notesList = noteList;
+    @observable trash = [];
 
     @action
     addNote(note){
@@ -22,8 +20,6 @@ class NotesStore {
         if(note === undefined)
             return;
         this.notesList.remove(note);
-        // var index = this.notesList.indexOf(note);
-        // this.notesList.splice(index,1)
     };
 
     @action
@@ -34,6 +30,23 @@ class NotesStore {
         var index = this.notesList.indexOf(oldNote);
         this.notesList[index] = editedNote;
     }
+
+    @action
+    moveToTrash(id){
+        var note = this.notesList.find(note => note.id === id);
+        if(note === undefined)
+            return;
+        this.notesList.remove(note);
+        this.trash.push(note);
+    }
+
+    @action
+    deleteFromTrashNote(id){
+        var note = this.trash.find(note => note.id === id);
+        if(note === undefined)
+            return;
+        this.trash.remove(note);
+    };
 
     findByKey(id){
         return this.notesList.find(note => note.id === id);
