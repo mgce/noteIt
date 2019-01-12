@@ -25,12 +25,36 @@ Navigation.registerComponent(`navigation.noteIt.HomeScreen`, () => WrappedCompon
 Navigation.registerComponent(`navigation.noteIt.LabelsScreen`, () => WrappedComponent(MainWrapper(Labels)({headerTitle: "Edit labels"})));
 Navigation.registerComponent(`navigation.noteIt.NoteEditorScreen`, () => WrappedComponent(NoteEditor));
 
+// Navigation.events().registerAppLaunchedListener(() => {
+//   Navigation.setRoot({
+//     root: {
+//       component: {
+//         name: "navigation.noteIt.HomeScreen",
+//         passProps: {store}
+//       }
+//     }
+//   });
+// });
+
+
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setRoot({
     root: {
-      component: {
-        name: "navigation.noteIt.HomeScreen",
-        passProps: {store}
+      stack: {
+        children:[
+          {
+            component:{
+              name: "navigation.noteIt.HomeScreen",
+              passProps: {store},
+              options:{
+                topBar:{
+                  visible: false,
+                  drawBehind: true
+                }
+              }
+            }
+          }
+        ]
       }
     }
   });

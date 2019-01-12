@@ -3,12 +3,21 @@ import { View, StyleSheet } from "react-native";
 import { colors } from "../../constants/styles";
 import Header from "../Header";
 import DrawerItem from "../DrawerItem"
+import {goToLabels} from "navigation"
 
 export default class DrawerContent extends React.PureComponent {
+  constructor(props){
+    super(props);
+    this.navigateToLabels = this.navigateToLabels.bind(this);
+  }
+  navigateToLabels=()=>{
+    this.props.goBack();
+    goToLabels(this.props.componentId);
+  }
   render() {
     return (
       <View style={styles.container}>
-        <Header inDrawer title="Menu" closeDrawer={this.props.closeDrawer} />
+        <Header inDrawer title="Menu" goBack={this.props.goBack} />
         <View style={styles.menuItemsContainer}>
           <DrawerItem active>
             Notes
@@ -19,8 +28,8 @@ export default class DrawerContent extends React.PureComponent {
           <DrawerItem>
             Trash
           </DrawerItem>
-          <DrawerItem>
-            Edit lab
+          <DrawerItem onPress={this.navigateToLabels}>
+            Edit labels
           </DrawerItem>
           <DrawerItem>
             Contact us

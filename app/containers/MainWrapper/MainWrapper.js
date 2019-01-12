@@ -20,12 +20,12 @@ export default (mainWrapper = (WrappedComponent) => (params) =>
     };
     render() {
       return (
-          <React.Fragment>
+        <React.Fragment>
         <Drawer
           ref={ref => {
             this.drawer = ref;
           }}
-          content={<DrawerContent goBack={this.closeDrawer} />}
+          content={<DrawerContent goBack={this.closeDrawer} componentId={this.props.componentId}/>}
         >
           <View style={{ flex: 1, backgroundColor: "#F4F4F4" }}>
             <Header

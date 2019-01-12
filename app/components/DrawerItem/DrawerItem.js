@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { colors, fonts } from "../../constants/styles";
 
 export default class DrawerItem extends React.PureComponent {
@@ -14,9 +14,12 @@ export default class DrawerItem extends React.PureComponent {
         style = {...style, ...styles.inactive};
 
     return (
-      <Text style={style} boldActive>
-        {this.props.children}
-      </Text>
+      <TouchableOpacity onPress={this.props.onPress}>
+        <Text style={style} boldActive>
+          {this.props.children}
+        </Text>
+      </TouchableOpacity>
+      
     );
   }
 }

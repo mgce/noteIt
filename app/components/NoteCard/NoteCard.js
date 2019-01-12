@@ -5,7 +5,7 @@ import {
   Text,
   View
 } from "react-native";
-import { colors, fonts } from "../../constants/styles";
+import { colors, fonts, fontStyles } from "../../constants/styles";
 
 export default class NoteCard extends React.PureComponent {
   displayDate = d =>{
@@ -53,8 +53,6 @@ export default class NoteCard extends React.PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    // paddingLeft: 60,
-    // paddingRight: 40,
     backgroundColor: colors.light,
     paddingVertical: 5
   },
@@ -70,21 +68,20 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   },
   title: {
+    ...fontStyles.gilroy,
     color: colors.textPrimary,
-    fontFamily: "Gilroy",
     fontSize: fonts.lg,
-    fontWeight: "900",
     paddingLeft: 15
   },
   description: {
+    ...fontStyles.interUi,
     color: colors.textSecondary,
-    fontFamily: "Inter UI",
     fontSize: fonts.md,
     paddingBottom: 10
   },
   dateCreate: {
+    ...fontStyles.interUi,
     color: colors.textPrimary,
-    fontFamily: "Inter UI",
     fontSize: fonts.sm,
     paddingBottom: 10
   },
