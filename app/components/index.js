@@ -9,6 +9,7 @@ import EmptyList from "./EmptyList";
 import EditLabelModal from "./EditLabelModal"
 import Button from "./Button"
 import LabelItem from "./LabelItem"
+import ColorPicker from "./ColorPicker"
 
 export default {
     Text,
@@ -21,5 +22,6 @@ export default {
     Header,
     Button,
     LabelItem,
+    ColorPicker,
     EditLabelModal
 }

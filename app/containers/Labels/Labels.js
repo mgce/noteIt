@@ -40,7 +40,7 @@ export default class Labels extends Component {
     const color = this.props.labels.getColorById(item.colorId);
     return color.value;
   };
-  renderItem = ({item}) => (
+  renderItem = ({ item }) => (
     <LabelItem
       label={item}
       openModal={this.openModal}
@@ -53,10 +53,12 @@ export default class Labels extends Component {
         <Modal
           isVisible={this.state.isVisible}
           onBackdropPress={this.closeModal}
-          labelName={this.state.activeLabelName}
-          colorId={this.state.activeLabelColorId}
         >
-          <EditLabelModal colors={this.props.labels.colors} />
+          <EditLabelModal
+            colors={this.props.labels.colors}
+            labelName={this.state.activeLabelName}
+            colorId={this.state.activeLabelColorId}
+          />
         </Modal>
         <FlatList
           data={this.props.labels.labelsList}
