@@ -6,7 +6,7 @@ import Header from "components/Header";
 import { Navigation } from "react-native-navigation";
 import {observer, inject} from 'mobx-react/native'
 
-@inject("notes")
+@inject("notes", "labels")
 @observer
 export default class NoteEditor extends React.Component {
   constructor(props) {
@@ -48,7 +48,7 @@ export default class NoteEditor extends React.Component {
       dateModified: Date.now()
     };
 
-    if(note.id !== null)
+    if(note.id !== undefined && note.id !== null)
       this.props.notes.editNote(note)
     else
       this.props.notes.addNote(note);

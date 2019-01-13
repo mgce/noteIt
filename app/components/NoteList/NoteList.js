@@ -45,7 +45,9 @@ export default class NoteList extends Component {
           title={item.title}
           description={item.body}
           dateCreate={item.dateCreate}
+          labels={item.labels}
           onPress={this.props.onPress}
+          labelsList={this.props.labels}
         />
       </Animated.View>
     );

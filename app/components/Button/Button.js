@@ -7,7 +7,7 @@ export default class Button extends PureComponent {
     return (
       <TouchableHighlight
         underlayColor={colors.primaryDarker}
-        onPress={this.props.openEditor}
+        onPress={this.props.onPress}
         style={styles.button}>
         <Text style={styles.buttonText}>{this.props.children}</Text>
       </TouchableHighlight>

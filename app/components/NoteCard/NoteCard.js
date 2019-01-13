@@ -24,6 +24,15 @@ export default class NoteCard extends React.PureComponent {
   onPress = () => (
     this.props.onPress(this.props.id)
   )
+  renderLabel = (labelId) => {
+    const selectedLabel = this.props.labelsList.find(l=>l.id === labelId)
+    return (
+    <View style={{...styles.label, backgroundColor: selectedLabel.color.value}}>
+      <Text style={styles.labelText}>{selectedLabel.name}</Text>
+    </View>
+    )
+    
+  }
   render() {
     const dateCreate = new Date(this.props.dateCreate);
     const displayDateCreate = this.displayDate(dateCreate);
@@ -41,7 +50,11 @@ export default class NoteCard extends React.PureComponent {
 
             <View style={styles.descriptionContainer}>
               <Text style={styles.description}>{this.displayDescription(this.props.description)}</Text>
-              <Text style={styles.dateCreate}>{displayDateCreate}</Text>
+              <View style={styles.infoContainer}>
+                <Text style={styles.dateCreate}>{displayDateCreate}</Text>
+                {this.props.labels.map(label => this.renderLabel(label))}
+              </View>
+              
             </View>
           </View>
           <View style={styles.separator} />
@@ -83,7 +96,7 @@ const styles = StyleSheet.create({
     ...fontStyles.interUi,
     color: colors.textPrimary,
     fontSize: fonts.sm,
-    paddingBottom: 10
+    marginRight: 5
   },
   separator: {
     backgroundColor: "#E3E3E3",
@@ -95,5 +108,23 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     width: 7,
     height: 7
+  },
+  infoContainer:{
+    flex:1,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingBottom: 10
+  },
+  label:{
+    alignSelf: "center",
+    justifyContent:"center",
+    borderRadius: 10,
+    paddingHorizontal: 6,
+    marginHorizontal: 2
+  },
+  labelText:{
+    ...fontStyles.interUi,
+    color: colors.light,
+    fontSize: fonts.sm,
   }
 });

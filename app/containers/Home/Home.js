@@ -5,13 +5,17 @@ import ActionButton from "react-native-action-button";
 import { goToEditor } from "navigation";
 import { observer, inject } from "mobx-react/native";
 
-@inject("notes")
+@inject("notes", "labels")
 @observer
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.deleteNote = this.deleteNote.bind(this);
     this.editNote = this.editNote.bind(this);
+    this.props.labels.labelsList.forEach(label => {
+      const color = this.props.labels.colors.find(c=>c.id === label.colorId);
+      label.color = color;
+    });
   }
   openEditor = params => {
     goToEditor(this.props.componentId, params);
@@ -32,9 +36,10 @@ export default class App extends Component {
       <React.Fragment>
         <NoteList
           dataSource={this.props.notes.notesList}
+          labels={this.props.labels.labelsList}
           onPress={this.editNote}
           deleteAction={this.deleteNote}
-          openEditor={this.openEditor}
+          openEditor={this.openEditor} 
         />
         <ActionButton buttonColor="#716AFF" onPress={this.openEditor} />
       </React.Fragment>

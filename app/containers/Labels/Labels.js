@@ -1,17 +1,11 @@
 import React, { Component } from "react";
-import {
-  View,
-  FlatList,
-  Text,
-  StyleSheet,
-  TouchableHighlight
-} from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import { observer, inject } from "mobx-react/native";
 import { colors, fonts, fontStyles, dimensions } from "../../constants/styles";
 import Modal from "react-native-modal";
 import EditLabelModal from "../../components/EditLabelModal/EditLabelModal";
-import { Pencil } from "../../assets/icons";
 import LabelItem from "components/LabelItem";
+import ActionButton from "react-native-action-button";
 
 @inject("labels")
 @observer
@@ -20,21 +14,28 @@ export default class Labels extends Component {
     super(props);
     this.state = {
       isVisible: false,
+      activeLabelId: null,
       activeLabelName: "",
       activeLabelColorId: 0
     };
     this.renderItem = this.renderItem.bind(this);
     this.openModal = this.openModal.bind(this);
+    this.editAction = this.editAction.bind(this);
+    this.addAction = this.addAction.bind(this);
   }
   openModal = label => {
-    this.setState({
-      activeLabelName: label.name,
-      activeLabelColorId: label.colorId
-    });
+    if(label !== undefined)
+        this.setState({
+        activeLabelId: label.id,
+        activeLabelName: label.name,
+        activeLabelColorId: label.colorId
+        });
     this.setState({
       isVisible: true
     });
   };
+  editAction = (label) => this.props.labels.editLabel(label);
+  addAction = (label) => this.props.labels.addLabel(label);
   closeModal = () => this.setState({ isVisible: false });
   getItemColor = item => {
     const color = this.props.labels.getColorById(item.colorId);
@@ -56,8 +57,12 @@ export default class Labels extends Component {
         >
           <EditLabelModal
             colors={this.props.labels.colors}
+            labelId={this.state.activeLabelId}
             labelName={this.state.activeLabelName}
             colorId={this.state.activeLabelColorId}
+            closeModal={this.closeModal}
+            editAction={this.editAction}
+            addAction={this.addAction}
           />
         </Modal>
         <FlatList
@@ -65,6 +70,7 @@ export default class Labels extends Component {
           renderItem={this.renderItem}
           keyExtractor={item => item.id.toString()}
         />
+      <ActionButton buttonColor="#716AFF" onPress={this.openModal} />
       </View>
     );
   }
@@ -72,6 +78,7 @@ export default class Labels extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     paddingVertical: 5
   },
   itemContainer: {
@@ -93,5 +100,5 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     fontSize: fonts.lg,
     paddingLeft: 15
-  }
+  },
 });

@@ -1,21 +1,17 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, Component } from "react";
 import {
   View,
-  FlatList,
   Text,
   StyleSheet,
   TouchableHighlight
 } from "react-native";
 import { colors, fonts, fontStyles, dimensions } from "../../constants/styles";
 
-export default class LabelItem extends PureComponent {
+export default class LabelItem extends Component {
   constructor(props) {
     super(props);
   }
   openModal = () => this.props.openModal(this.props.label);
-  componentDidMount(){
-      console.log(this);
-  }
   render() {
     return (
       <TouchableHighlight

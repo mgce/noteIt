@@ -3,7 +3,7 @@ import { fonts, fontStyles } from "../../constants/styles";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { CheckmarkColorPicker } from "../../assets/icons/Icons";
 
-export default class ColorPicker extends Component {
+export default class ColorPicker extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +18,7 @@ export default class ColorPicker extends Component {
     if(color.id === this.state.selectedColorId)
       checkmark = <CheckmarkColorPicker />
     return (
-      <TouchableOpacity onPress={() => this.props.selectColor(color.id)} style={{ ...styles.circle, backgroundColor: color.value }}>
+      <TouchableOpacity key={color.id} onPress={() => this.props.selectColor(color.id)} style={{ ...styles.circle, backgroundColor: color.value }}>
         {checkmark}
       </TouchableOpacity>
     );

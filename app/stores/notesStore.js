@@ -6,7 +6,7 @@ class NotesStore {
 
     @action
     addNote(note){
-        const lastElement = this.notesList.pop();
+        const lastElement = this.notesList[this.notesList.length - 1]
         if(lastElement === undefined)
             note.id = 1
         else
@@ -63,14 +63,16 @@ const noteList = [
       title: "Notatka 1 test",
       body:
         "Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis...",
-        dateCreate: "5 min ago"
+        dateCreate: 1547398913687,
+        labels:[1,2]
     },
     {
       id: 2,
       title: "Notatka 2",
       body:
         "Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis...",
-        dateCreate: "5 min ago"
+        dateCreate: 1547398913687,
+        labels:[3,4]
     },
     // {
     //   key: "3",

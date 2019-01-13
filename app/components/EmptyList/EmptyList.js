@@ -9,7 +9,7 @@ export default class EmptyList extends React.PureComponent {
       <View style={styles.container}>
         <Image source={require("../../assets/images/notes.png")} />
         <Text style={styles.text}>Start adding notes</Text>
-        <Button>Create</Button>
+        <Button onPress={this.props.openEditor}>Create</Button>
       </View>
     );
   }
