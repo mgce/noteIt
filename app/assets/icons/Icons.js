@@ -18,3 +18,4 @@ export const DarkPencil = () => <Icon name="pencil" size={18} color="#545454" />
 export const Trash = () => <Icon name="trash" size={24} color="#F4F4F4" />;
 export const Label = () => <Icon name="label" size={21} color="#716AFF" />;
 export const Checkmark = () => <Icon name="checkmark" size={16} color="#716AFF" />;
+export const CheckmarkColorPicker = () => <Icon name="checkmark" size={7} color="#545454" />;

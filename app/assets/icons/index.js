@@ -1,4 +1,4 @@
-import { Hamburger, Magnifier, Close, Pencil, Trash, DarkPencil, Checkmark } from "./Icons";
+import { Hamburger, Magnifier, Close, Pencil, Trash, DarkPencil, Checkmark, CheckmarkColorPicker } from "./Icons";
 
 export default {
   Hamburger,
@@ -7,5 +7,6 @@ export default {
   Pencil,
   DarkPencil,
   Trash,
-  Checkmark
+  Checkmark,
+  CheckmarkColorPicker
 };

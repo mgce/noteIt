@@ -1,2 +1,2 @@
-import ColorPicker from "./CloroPicker"
+import ColorPicker from "./ColorPicker"
 export default ColorPicker;

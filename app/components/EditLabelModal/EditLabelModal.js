@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, Component } from "react";
 import { Input, Label, Form, Item } from "native-base";
 import { colors, fonts, fontStyles, dimensions } from "../../constants/styles";
 import {
@@ -8,21 +8,19 @@ import {
 import Button from "../Button";
 import ColorPicker from "components/ColorPicker"
 
-export default class EditLabelModal extends PureComponent {
+export default class EditLabelModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      colorId: ""
+      name: props.labelName,
+      colorId: props.colorId
     };
+    this.selectColor = this.selectColor.bind(this);
   }
-  componentDidMount() {
-    if (this.props !== undefined)
-      this.setState({
-        name: this.props.labelName,
-        colorId: this.props.colorId
-      });
-  }
+  selectColor = (newColorId) => {
+      if(newColorId !== this.state.colorId)
+        this.setState({colorId: newColorId})
+    }
   onNameChange = value => {
     this.setState({ name: value });
   };
@@ -30,11 +28,11 @@ export default class EditLabelModal extends PureComponent {
     return (
       <View style={styles.container}>
         <Form>
+        <Label style={styles.label}>Label name</Label>
           <Item style={styles.item}>
-            <Label style={styles.label}>Label name</Label>
             <Input value={this.state.name} onChangeText={this.onNameChange} />
           </Item>
-          <ColorPicker colors={this.props.colors} />
+          <ColorPicker colors={this.props.colors} selectedColorId={this.state.colorId} selectColor={this.selectColor}/>
           <Button>Submit</Button>
         </Form>
       </View>
@@ -51,7 +49,7 @@ const styles = StyleSheet.create({
     minHeight: dimensions.fullHeight / 3
   },
   item: {
-    flexDirection: "column"
+    padding: 0
   },
   label: {
     ...fontStyles.interUi,
