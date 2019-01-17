@@ -5,6 +5,8 @@ import { colors, fonts } from "constants/styles";
 import Header from "components/Header";
 import { Navigation } from "react-native-navigation";
 import {observer, inject} from 'mobx-react/native'
+import Modal from "react-native-modal"
+import SelectLabelModal from "components/SelectLabelModal"
 
 @inject("notes", "labels")
 @observer
@@ -15,19 +17,22 @@ export default class NoteEditor extends React.Component {
       id: null,
       title: "",
       body: "",
-      dateCreated: null
+      dateCreated: null,
+      isModalVisible: false
     };
     this.saveNote = this.saveNote.bind(this);
+    this.closeSelectLabelModal = this.closeSelectLabelModal.bind(this);
+    this.openSelectLabelModal = this.openSelectLabelModal.bind(this);
   }
   componentDidMount(){
     if(this.props === undefined)
       return;
 
      this.setState({
-       id: this.props.id,
-       title: this.props.title,
-       body: this.props.body,
-       dateCreated: this.props.dateCreated
+       id: this.props.note.id,
+       title: this.props.note.title,
+       body: this.props.note.body,
+       dateCreated: this.props.note.dateCreated
      }) 
   }
   goBack() {
@@ -55,10 +60,22 @@ export default class NoteEditor extends React.Component {
 
     this.goBack();
   };
+  openSelectLabelModal = () => this.setState({isModalVisible: true})
+  closeSelectLabelModal = () => this.setState({isModalVisible: false})
   render() {
     return (
       <View style={styles.container}>
-        <Header editor goBack={this.goBack} submit={this.saveNote}/>
+      <Modal
+          isVisible={this.state.isModalVisible}
+          onBackdropPress={this.closeSelectLabelModal}
+        >
+          <SelectLabelModal
+          closeModal = {this.closeSelectLabelModal}
+          dataSource = {this.props.labels.labelsList}
+          colorList = {this.props.labels.colors}
+          />
+        </Modal>
+        <Header editor goBack={this.goBack} submit={this.saveNote} openLabelModal={this.openSelectLabelModal}/>
         <Form>
           <Item>
             <Input
@@ -86,8 +103,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light,
     flex: 1,
     paddingHorizontal: 5
-    // height: dimensions.fullHeight,
-    // width: dimensions.fullWidth
   },
   title: {
     color: colors.primary,

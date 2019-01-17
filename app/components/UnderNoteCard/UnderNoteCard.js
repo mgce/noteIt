@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, TouchableHighlight } from "react-native";
-import { Pencil, Trash } from "../../assets/icons/Icons";
+import { Pencil, WhiteTrash } from "../../assets/icons/Icons";
 import {colors} from "constants/styles"
 
 export default class UnderNoteCard extends React.PureComponent {
@@ -8,7 +8,7 @@ export default class UnderNoteCard extends React.PureComponent {
     return (
       <View style={styles.container}>
         <TouchableHighlight style={styles.leftContainer} onPress={()=>console.log("leftTapped")}>
-          <Trash />
+          <WhiteTrash />
         </TouchableHighlight>
        
       </View>

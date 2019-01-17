@@ -17,11 +17,20 @@ class LabelsStore {
 
   @action
   addLabel(label) {
-    const lastElement = this.labelsList.pop();
+    const lastElement = this.labelsList[this.labelsList.length - 1]
     if (lastElement === undefined) label.id = 1;
     else label.id = lastElement.id++;
     this.labelsList.push(label);
   }
+
+  @action
+  deleteLabel(label){
+      var labelFromList = this.labelsList.find(l => l.id === label.id);
+      if(labelFromList === undefined)
+          return;
+      this.labelsList.remove(labelFromList);
+  };
+
 }
 
 const labels = [

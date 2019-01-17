@@ -22,21 +22,29 @@ export default class Labels extends Component {
     this.openModal = this.openModal.bind(this);
     this.editAction = this.editAction.bind(this);
     this.addAction = this.addAction.bind(this);
+    this.deleteAction = this.deleteAction.bind(this);
   }
   openModal = label => {
-    if(label !== undefined)
-        this.setState({
+    if (label !== undefined)
+      this.setState({
         activeLabelId: label.id,
         activeLabelName: label.name,
         activeLabelColorId: label.colorId
-        });
+      });
     this.setState({
       isVisible: true
     });
   };
-  editAction = (label) => this.props.labels.editLabel(label);
-  addAction = (label) => this.props.labels.addLabel(label);
-  closeModal = () => this.setState({ isVisible: false });
+  editAction = label => this.props.labels.editLabel(label);
+  addAction = label => this.props.labels.addLabel(label);
+  deleteAction = label => this.props.labels.deleteLabel(label);
+  closeModal = () =>
+    this.setState({
+      isVisible: false,
+      activeLabelId: null,
+      activeLabelName: null,
+      activeLabelColorId: null
+    });
   getItemColor = item => {
     const color = this.props.labels.getColorById(item.colorId);
     return color.value;
@@ -46,6 +54,7 @@ export default class Labels extends Component {
       label={item}
       openModal={this.openModal}
       getItemColor={this.getItemColor}
+      deleteAction={this.deleteAction}
     />
   );
   render() {
@@ -67,10 +76,15 @@ export default class Labels extends Component {
         </Modal>
         <FlatList
           data={this.props.labels.labelsList}
+          extraData={{
+            labelsList: this.props.labels.labelsList,
+            labelsListLength:this.props.labels.labelsList.length,
+            state: this.state
+          }}
           renderItem={this.renderItem}
           keyExtractor={item => item.id.toString()}
         />
-      <ActionButton buttonColor="#716AFF" onPress={this.openModal} />
+        <ActionButton buttonColor="#716AFF" onPress={this.openModal} />
       </View>
     );
   }
@@ -100,5 +114,5 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     fontSize: fonts.lg,
     paddingLeft: 15
-  },
+  }
 });

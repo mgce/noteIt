@@ -57,7 +57,7 @@ class Header extends React.PureComponent {
       RightIcon = null;
       RightIconGroup = (
         <View style={styles.rightIcon}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this.props.openLabelModal}>
             <Label />
           </TouchableOpacity>
           <TouchableOpacity style={styles.leftNeighbour} onPress={this.props.submit}>

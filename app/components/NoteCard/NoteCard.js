@@ -13,8 +13,7 @@ export default class NoteCard extends React.PureComponent {
     const hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours();
     const ampm = d.getHours() >= 12 ? 'pm' : 'am';
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    return days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes+' '+ampm;
+    return months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes+' '+ampm;
   }
   displayDescription = description => {
     if(description.length > 150)
@@ -27,7 +26,7 @@ export default class NoteCard extends React.PureComponent {
   renderLabel = (labelId) => {
     const selectedLabel = this.props.labelsList.find(l=>l.id === labelId)
     return (
-    <View style={{...styles.label, backgroundColor: selectedLabel.color.value}}>
+    <View key={labelId} style={{...styles.label, backgroundColor: selectedLabel.color.value}}>
       <Text style={styles.labelText}>{selectedLabel.name}</Text>
     </View>
     )
@@ -119,7 +118,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent:"center",
     borderRadius: 10,
-    paddingHorizontal: 6,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
     marginHorizontal: 2
   },
   labelText:{

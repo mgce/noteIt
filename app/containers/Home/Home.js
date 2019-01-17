@@ -28,7 +28,7 @@ export default class App extends Component {
   };
   editNote = key => {
     var note = this.props.notes.findByKey(key);
-    this.openEditor(note);
+    this.openEditor({note});
   };
   render() {
     if (this.listIsEmpty()) return <EmptyList openEditor={this.openEditor} />;

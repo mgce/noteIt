@@ -10,6 +10,8 @@ import EditLabelModal from "./EditLabelModal"
 import Button from "./Button"
 import LabelItem from "./LabelItem"
 import ColorPicker from "./ColorPicker"
+import SelectLabelModal from "./SelectLabelModal"
+import Circle from "./Circle"
 
 export default {
     Text,
@@ -23,5 +25,7 @@ export default {
     Button,
     LabelItem,
     ColorPicker,
+    SelectLabelModal,
+    Circle,
     EditLabelModal
 }
