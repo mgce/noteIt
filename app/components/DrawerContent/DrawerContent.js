@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { colors } from "../../constants/styles";
 import Header from "../Header";
 import DrawerItem from "../DrawerItem"
-import {goToLabels} from "navigation"
+import {goToLabels, backToHome} from "navigation"
 import {Content} from "native-base";
 
 export default class DrawerContent extends React.PureComponent {
@@ -15,12 +15,16 @@ export default class DrawerContent extends React.PureComponent {
     this.props.goBack();
     goToLabels(this.props.componentId);
   }
+  navigateToHome=()=>{
+    this.props.goBack();
+    backToHome(this.props.componentId);
+  }
   render() {
     return (
       <Content style={styles.container}>
         <Header inDrawer title="Menu" goBack={this.props.goBack} />
         <View style={styles.menuItemsContainer}>
-          <DrawerItem active>
+          <DrawerItem active onPress={this.navigateToHome}>
             Notes
           </DrawerItem>
           <DrawerItem>

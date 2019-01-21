@@ -7,18 +7,19 @@ export default class ColorPicker extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      selectedColorId: props.selectedColorId
+      labelColorId: props.labelColorId
     };
   }
   componentWillReceiveProps = nextProps => {
-    this.setState({selectedColorId: nextProps.selectedColorId})
+    this.setState({labelColorId: nextProps.labelColorId})
   }
   renderItem = color => {
     let checkmark;
-    if(color.id === this.state.selectedColorId)
+    if(color.id === this.state.labelColorId)
       checkmark = <CheckmarkColorPicker />
     return (
-      <TouchableOpacity key={color.id} onPress={() => this.props.selectColor(color.id)} style={{ ...styles.circle, backgroundColor: color.value }}>
+      <TouchableOpacity key={color.id} onPress={() => 
+      this.props.selectColor(color.id)} style={{ ...styles.circle, backgroundColor: color.value }}>
         {checkmark}
       </TouchableOpacity>
     );
@@ -28,7 +29,7 @@ export default class ColorPicker extends PureComponent {
       <View style={styles.container}>
         <Text style={styles.label}>Label colors</Text>
         <View style={styles.picker}>
-          {this.props.colors.map(color => this.renderItem(color))}
+          {this.props.colorsSource.map(color => this.renderItem(color))}
         </View>
       </View>
     );

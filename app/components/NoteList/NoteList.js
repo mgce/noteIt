@@ -18,11 +18,11 @@ export default class NoteList extends Component {
     const { key, value } = animatedItem;
     var ease = Easing.ease;
     this.rowTranslateAnimatedValue.setValue(1);
-    if(value > dimensions.fullWidth/2 && !this.animationIsRunning){
+    if(value > dimensions.fullWidth/4 && !this.animationIsRunning){
       this.animationIsRunning = true;
       Animated.timing(this.rowTranslateAnimatedValue, {
         toValue: 0,
-        duration: 200,
+        duration: 3000,
         ease
       }).start(() => {
         this.props.rightCardSwipe(parseInt(key));

@@ -3,11 +3,10 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableHighlight,
   TouchableOpacity
 } from "react-native";
 import { colors, fonts, fontStyles, dimensions } from "../../constants/styles";
-import { Trash, DarkPencil } from "../../assets/icons/Icons";
+import { Trash, PrimaryPencil } from "../../assets/icons/Icons";
 
 export default class LabelItem extends Component {
   constructor(props) {
@@ -31,11 +30,11 @@ export default class LabelItem extends Component {
           <Text style={styles.title}>{this.props.label.name}</Text>
         </View>
         <View style={styles.icons}>
-          <TouchableOpacity onPress={this.deleteLabel}>
+          <TouchableOpacity style={styles.singleIcon} onPress={this.deleteLabel}>
             <Trash />
           </TouchableOpacity>
-          <TouchableOpacity onPress={this.openModal}>
-            <DarkPencil />
+          <TouchableOpacity style={styles.singleIcon}  onPress={this.openModal}>
+            <PrimaryPencil />
           </TouchableOpacity>
         </View>
       </View>
@@ -72,5 +71,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginLeft: "auto"
+  },
+  singleIcon:{
+    paddingHorizontal: 5,
+    paddingVertical: 5
   }
 });

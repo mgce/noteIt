@@ -65,10 +65,10 @@ export default class Labels extends Component {
           onBackdropPress={this.closeModal}
         >
           <EditLabelModal
-            colors={this.props.labels.colors}
+            colorsSource={this.props.labels.colors}
             labelId={this.state.activeLabelId}
             labelName={this.state.activeLabelName}
-            colorId={this.state.activeLabelColorId}
+            labelColorId={this.state.activeLabelColorId}
             closeModal={this.closeModal}
             editAction={this.editAction}
             addAction={this.addAction}
