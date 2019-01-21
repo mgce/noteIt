@@ -31,15 +31,14 @@ export default class App extends Component {
     this.openEditor({note});
   };
   render() {
-    if (this.listIsEmpty()) return <EmptyList openEditor={this.openEditor} />;
+    if (this.listIsEmpty()) return <EmptyList onPress={this.openEditor} />;
     return (
       <React.Fragment>
         <NoteList
           dataSource={this.props.notes.notesList}
-          labels={this.props.labels.labelsList}
+          labelsSource={this.props.labels.labelsList}
           onPress={this.editNote}
-          deleteAction={this.deleteNote}
-          openEditor={this.openEditor} 
+          rightCardSwipe={this.deleteNote}
         />
         <ActionButton buttonColor="#716AFF" onPress={this.openEditor} />
       </React.Fragment>

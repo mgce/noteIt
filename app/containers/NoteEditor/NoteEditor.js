@@ -18,6 +18,7 @@ export default class NoteEditor extends React.Component {
       title: "",
       body: "",
       dateCreated: null,
+      labels: [],
       isModalVisible: false
     };
     this.saveNote = this.saveNote.bind(this);
@@ -25,14 +26,15 @@ export default class NoteEditor extends React.Component {
     this.openSelectLabelModal = this.openSelectLabelModal.bind(this);
   }
   componentDidMount(){
-    if(this.props === undefined)
+    if(this.props.note === undefined)
       return;
 
      this.setState({
        id: this.props.note.id,
        title: this.props.note.title,
        body: this.props.note.body,
-       dateCreated: this.props.note.dateCreated
+       dateCreated: this.props.note.dateCreated,
+       labels: this.props.note.labels
      }) 
   }
   goBack() {
@@ -50,7 +52,8 @@ export default class NoteEditor extends React.Component {
       title: this.state.title,
       body: this.state.body,
       dateCreated: this.state.dateCreated  ? this.state.dateCreated : Date.now(),
-      dateModified: Date.now()
+      dateModified: Date.now(),
+      labels: this.state.labels
     };
 
     if(note.id !== undefined && note.id !== null)

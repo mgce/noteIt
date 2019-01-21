@@ -8,23 +8,11 @@ import {
 import { colors, fonts, fontStyles } from "../../constants/styles";
 
 export default class NoteCard extends React.PureComponent {
-  displayDate = d =>{
-    const minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes();
-    const hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours();
-    const ampm = d.getHours() >= 12 ? 'pm' : 'am';
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    return months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes+' '+ampm;
-  }
-  displayDescription = description => {
-    if(description.length > 150)
-      description = description.substr(0, 150) + "..."
-    return description.replace(/\n/g, " ");;
-  }
   onPress = () => (
     this.props.onPress(this.props.id)
   )
   renderLabel = (labelId) => {
-    const selectedLabel = this.props.labelsList.find(l=>l.id === labelId)
+    const selectedLabel = this.props.labelsSource.find(l=>l.id === labelId)
     return (
     <View key={labelId} style={{...styles.label, backgroundColor: selectedLabel.color.value}}>
       <Text style={styles.labelText}>{selectedLabel.name}</Text>
@@ -33,7 +21,7 @@ export default class NoteCard extends React.PureComponent {
     
   }
   render() {
-    const dateCreate = new Date(this.props.dateCreate);
+    const dateCreate = new Date(this.props.dateCreated);
     const displayDateCreate = this.displayDate(dateCreate);
     return (
       <TouchableHighlight
@@ -60,6 +48,18 @@ export default class NoteCard extends React.PureComponent {
         </View>
       </TouchableHighlight>
     );
+  }
+  displayDate = d =>{
+    const minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes();
+    const hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours();
+    const ampm = d.getHours() >= 12 ? 'pm' : 'am';
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes+' '+ampm;
+  }
+  displayDescription = description => {
+    if(description.length > 150)
+      description = description.substr(0, 150) + "..."
+    return description.replace(/\n/g, " ");;
   }
 }
 

@@ -15,7 +15,6 @@ export default (mainWrapper = (WrappedComponent) => (params) =>
       this.drawer._root.close();
     };
     openDrawer = () => {
-      console.log(this);
       this.drawer._root.open();
     };
     render() {

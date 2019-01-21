@@ -4,6 +4,7 @@ import { colors } from "../../constants/styles";
 import Header from "../Header";
 import DrawerItem from "../DrawerItem"
 import {goToLabels} from "navigation"
+import {Content} from "native-base";
 
 export default class DrawerContent extends React.PureComponent {
   constructor(props){
@@ -16,7 +17,7 @@ export default class DrawerContent extends React.PureComponent {
   }
   render() {
     return (
-      <View style={styles.container}>
+      <Content style={styles.container}>
         <Header inDrawer title="Menu" goBack={this.props.goBack} />
         <View style={styles.menuItemsContainer}>
           <DrawerItem active>
@@ -35,7 +36,7 @@ export default class DrawerContent extends React.PureComponent {
             Contact us
           </DrawerItem>
         </View>
-      </View>
+      </Content>
     );
   }
 }

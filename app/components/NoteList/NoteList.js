@@ -25,7 +25,7 @@ export default class NoteList extends Component {
         duration: 200,
         ease
       }).start(() => {
-        this.props.deleteAction(parseInt(key));
+        this.props.rightCardSwipe(parseInt(key));
         this.animationIsRunning = false;
       });
     }
@@ -44,10 +44,10 @@ export default class NoteList extends Component {
           id={item.id}
           title={item.title}
           description={item.body}
-          dateCreate={item.dateCreate}
+          dateCreated={item.dateCreated}
           labels={item.labels}
           onPress={this.props.onPress}
-          labelsList={this.props.labels}
+          labelsSource={this.props.labelsSource}
         />
       </Animated.View>
     );

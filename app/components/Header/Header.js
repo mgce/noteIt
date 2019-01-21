@@ -11,70 +11,78 @@ import {
 } from "../../assets/icons/Icons";
 
 class Header extends React.PureComponent {
-  renderEditor(){
+  renderEditor() {
+    LeftIcon = (
+      <TouchableOpacity onPress={this.props.goBack}>
+        <Close />
+      </TouchableOpacity>
+    );
+    RightIconGroup = (
+      <View style={styles.rightIcon}>
+        <TouchableOpacity onPress={this.props.openLabelModal}>
+          <Label />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.leftNeighbour}
+          onPress={this.props.submit}
+        >
+          <Checkmark />
+        </TouchableOpacity>
+      </View>
+    );
 
+    return (
+      <View style={styles.container}>
+        <StatusBar backgroundColor={colors.light} barStyle="dark-content" />
+        {LeftIcon}
+        <Text style={styles.title}>{this.props.title}</Text>
+        {RightIconGroup}
+      </View>
+    );
   }
-  renderInDrawer(){
-
+  renderInDrawer() {
+    const LeftIcon = (
+      <TouchableOpacity onPress={this.props.goBack}>
+        <Close />
+      </TouchableOpacity>
+    );
+    return (
+      <View style={styles.container}>
+        <StatusBar backgroundColor={colors.light} barStyle="dark-content" />
+        {LeftIcon}
+        <Text style={styles.title}>{this.props.title}</Text>
+      </View>
+    );
   }
-  renderHome(){
-    
-  }
-  render() {
-    const { inDrawer, home, editor } = this.props;
+  renderHome() {
+    const LeftIcon = (
+      <TouchableOpacity onPress={this.props.openDrawer}>
+        <Hamburger />
+      </TouchableOpacity>
+    );
 
-    let LeftIcon;
-    let RightIcon;
-    let RightIconGroup;
+    const RightIcon = (
+      <TouchableOpacity style={styles.rightIcon}>
+        <Magnifier />
+      </TouchableOpacity>
+    );
 
-    if (inDrawer)
-      LeftIcon = (
-        <TouchableOpacity onPress={this.props.goBack}>
-          <Close />
-        </TouchableOpacity>
-      );
-
-    if (home) {
-      LeftIcon = (
-        <TouchableOpacity onPress={this.props.openDrawer}>
-          <Hamburger />
-        </TouchableOpacity>
-      );
-
-      RightIcon = (
-        <TouchableOpacity style={styles.rightIcon}>
-          <Magnifier />
-        </TouchableOpacity>
-      );
-    }
-
-    if (editor) {
-      LeftIcon = (
-        <TouchableOpacity onPress={this.props.goBack}>
-          <Close />
-        </TouchableOpacity>
-      );
-      RightIcon = null;
-      RightIconGroup = (
-        <View style={styles.rightIcon}>
-          <TouchableOpacity onPress={this.props.openLabelModal}>
-            <Label />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.leftNeighbour} onPress={this.props.submit}>
-            <Checkmark />
-          </TouchableOpacity>
-        </View>
-      );
-    }
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor={colors.light} barStyle="dark-content" />
         {LeftIcon}
         <Text style={styles.title}>{this.props.title}</Text>
         {RightIcon}
-        {RightIconGroup}
       </View>
     );
+  }
+  render() {
+    const { inDrawer, home, editor } = this.props;
+
+    if (inDrawer) return this.renderInDrawer();
+
+    if (editor) return this.renderEditor();
+    else return this.renderHome();
   }
 }
 
@@ -92,8 +100,8 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     paddingHorizontal: 18
   },
-  leftIcon:{
-    alignItems:"center"
+  leftIcon: {
+    alignItems: "center"
   },
   rightIcon: {
     alignItems: "center",
@@ -101,7 +109,7 @@ const styles = StyleSheet.create({
     flexDirection: "row-reverse",
     justifyContent: "flex-start"
   },
-  leftNeighbour:{
+  leftNeighbour: {
     paddingHorizontal: 20
   }
 });

@@ -63,7 +63,7 @@ const noteList = [
       title: "Notatka 1 test",
       body:
         "Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis...",
-        dateCreate: 1547398913687,
+        dateCreated: 1547398913687,
         labels:[1,2]
     },
     {
@@ -71,7 +71,7 @@ const noteList = [
       title: "Notatka 2",
       body:
         "Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis...",
-        dateCreate: 1547398913687,
+        dateCreated: 1547398913687,
         labels:[3,4]
     },
     // {
